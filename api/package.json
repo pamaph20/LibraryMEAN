@@ -1,0 +1,27 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "Api for library application",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "node run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pamaph20/LibraryMEAN.git"
+  },
+  "author": "Drew Maphey",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pamaph20/LibraryMEAN/issues"
+  },
+  "homepage": "https://github.com/pamaph20/LibraryMEAN#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "mongodb": "^6.8.0",
+    "node": "^22.5.1"
+  }
+}
