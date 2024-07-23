@@ -1,11 +1,11 @@
 //Figure out client sharing
 import { MongoClient } from "mongodb";
+import { getDb } from "../index.mjs";
 "use strict"
-const url = `mongodb+srv://dmaphey:${process.env.DB_password}@libcluster.e6dnhcx.mongodb.net/?retryWrites=true&w=majority&appName=LibCluster`
-const cli = new MongoClient(url);
+const client = getDb()
 export async function check_user(id){
     //Check to see the user exists
-    let col = cli.db("LibraryDB").collection("User");
+    let col = client.db("LibraryDB").collection("User");
     let user = await col.findOne({"user_id" : `${id}`});
     if(user === null){
       //user doesnt exist
