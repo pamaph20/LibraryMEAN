@@ -6,6 +6,9 @@ export async function getData(olid) {
     /***
      * Get a books title, author, and ISBN based on OLId
      */
+    /***
+     * Get a books title, author, and ISBN based on OLId
+     */
     try {
       const search_uri = `https://openlibrary.org/search.json?q=${olid}`;
       const search_response = await fetch(search_uri);
@@ -13,12 +16,19 @@ export async function getData(olid) {
         throw new Error(`Response status: ${search_response.status}`);
       }
       const search_data = await search_response.json();
-      book.Author = search_data.docs[0].author_name;
-      book.ISBN = search_data.docs[0].isbn[0];
-      book.ImgURL = `https://covers.openlibrary.org/b/olid/${olid}-S.jpg`;
-      book.Title = search_data.docs[0].title;
-      book.OLID = olid
-      return book;
+     let data = {
+      "Author" : search_data.docs[0].author_name,
+      "ISBN" : search_data.docs[0].isbn[0],
+      "ImgURL" : `https://covers.openlibrary.org/b/olid/${olid}-S.jpg`,
+      "Title" : search_data.docs[0].title,
+      "OLID" : olid
+     }
+      // book.Author = search_data.docs[0].author_name;
+      // book.ISBN = search_data.docs[0].isbn[0];
+      // book.ImgURL = `https://covers.openlibrary.org/b/olid/${olid}-S.jpg`;
+      // book.Title = search_data.docs[0].title;
+      // book.OLID = olid
+      return data;
     } catch (error) {
       console.error(error.message);
     }
