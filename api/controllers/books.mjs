@@ -1,5 +1,6 @@
 "use strict"
-
+import { Int32 } from "mongodb";
+import book from "../models/book.mjs"
 
 export async function getData(olid) {
     /***
@@ -12,14 +13,12 @@ export async function getData(olid) {
         throw new Error(`Response status: ${search_response.status}`);
       }
       const search_data = await search_response.json();
-      let search_json = {
-        Title :  search_data.docs[0].title,
-        Author :  search_data.docs[0].author_name,
-        ISBN : search_data.docs[0].isbn[0],
-        OLID : search_data.docs[0].edition_key[0],
-        img_url : `https://covers.openlibrary.org/b/olid/${olid}-S.jpg`
-      }
-      return search_json
+      book.Author = search_data.docs[0].author_name;
+      book.ISBN = search_data.docs[0].isbn[0];
+      book.ImgURL = `https://covers.openlibrary.org/b/olid/${olid}-S.jpg`;
+      book.Title = search_data.docs[0].title;
+      book.OLID = olid
+      return book;
     } catch (error) {
       console.error(error.message);
     }

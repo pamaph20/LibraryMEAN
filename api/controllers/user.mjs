@@ -12,10 +12,10 @@ export async function check_user(id){
     let user = await col.findOne({"user_id" : `${id}`});
     if(user === null){
       //user doesnt exist
-      return 0
+      return false
     }
     //user exists
-    return 1
+    return true
   }
 
 

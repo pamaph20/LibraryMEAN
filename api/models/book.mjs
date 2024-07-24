@@ -1,11 +1,13 @@
 let book = {
     "Title": String,
-    "ISBN": Number,
+    "ISBN": String,
     "Author": [String],
     "PublishYear": Number,
     "ImgURL": String,
-    "OLID": Number
+    "OLID": String
 }
+
+export default book;
 
 
 

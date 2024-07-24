@@ -26,12 +26,12 @@ export async function getLibraryData(library_id){
   }
 
   export async function check_lib(library_id){
-    //Check to see the user exists
-    let user = await LibCol.findOne({"LibraryName" : `${library_id}`});
-    if(user === null){
-      //user doesnt exist
-      return 0
+    //Check to see the library exists
+    let lib = await LibCol.findOne({"LibraryName" : `${library_id}`});
+    if(lib === null){
+      //library doesnt exist
+      return false
     }
-    //user exists
-    return 1
+    //library exists
+    return true
   }
