@@ -18,8 +18,8 @@ export async function getLibraryData(library_id){
       //gets the list of books in library
       let books = cur[0]["Books"]
     let res = [];
-    for (const book_id of books) {
-      const data = await getData(book_id);
+    for (const olid of books) {
+      const data = await getData(olid);
       res.push(data);
     }
     return res;

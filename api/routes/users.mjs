@@ -13,6 +13,4 @@ let client =  new MongoClient(url);
 let UserCol = client.db("LibraryDB").collection("User");
 const router = express.Router()
 
-
-
 export default router;

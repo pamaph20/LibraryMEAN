@@ -21,7 +21,7 @@ router.get("/search/:library_id", async (req,res) =>{
     let user_id = req.params.library_id;
     if(await check_lib(user_id) == 0){
       res.status(401)
-      res.json(`User ${user_id} does not exist`)
+      res.json(`Library ${user_id} does not exist`)
     }
     try{
       res.json(await getLibraryData(user_id))
@@ -30,12 +30,12 @@ router.get("/search/:library_id", async (req,res) =>{
     }
   });
 
-  router.put("/add_book/:library_id/:id", async (req, res) => {
+  router.put("/add_book/:library_id/:olid", async (req, res) => {
     //needs to be some user authentication here... probably with session information 
     /**
      * Add new book to a users library where id is a general book identifier
      */
-    const book_id = req.params.id;
+    const olid = req.params.olid;
     const library_id = req.params.library_id; 
     if(await check_lib(library_id) == 0){
       res.status(401)
@@ -47,7 +47,7 @@ router.get("/search/:library_id", async (req,res) =>{
       }).toArray();
     try{
         //update the given library array with the new book.
-        library[0]["Books"].push(book_id.toString()); 
+        library[0]["Books"].push(olid.toString()); 
       await LibCol.updateOne(
         {"LibraryName" : library_id},
         {$set : {"Books" : library[0]["Books"]}}

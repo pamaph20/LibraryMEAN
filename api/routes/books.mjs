@@ -3,13 +3,12 @@ import express from "express"
 import {getData} from "../controllers/books.mjs"
 const router = express.Router();
 
-router.get("/search/:id", async (request, response) => {
+router.get("/search/:olid", async (request, response) => {
     /**
      * Returns json info with information about a single book. 
      */
-    const info = request.params.id;
-    const search_uri = `https://openlibrary.org/search.json?q=${info}`;
-    response.send(await getData(search_uri));
+    const olid = request.params.olid;
+    response.send(await getData(olid));
   }); 
 
 export default router;
