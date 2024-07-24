@@ -4,6 +4,7 @@ import express from "express"
 import cors from "cors"
 import bookRouter from "./routes/books.mjs"
 import userRouter from "./routes/users.mjs"
+import libraryRouter from "./routes/libraries.mjs"
 //import {client} from "./db.mjs"
 import Dotenv from "dotenv";
 
@@ -24,5 +25,6 @@ app.get("", (req,res) => {
 
 app.use('/books', bookRouter)
 app.use('/user', userRouter)
+app.use('/library', libraryRouter)
 export default app;
 

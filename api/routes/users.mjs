@@ -1,6 +1,6 @@
 "use strict"
 import { check_user } from "../controllers/user.mjs";
-import { getLibraryData } from "../controllers/library.mjs";
+import { getData } from "../controllers/books.mjs";
 import express from "express";
 import Dotenv from "dotenv";
 import { MongoClient } from "mongodb";
@@ -11,22 +11,8 @@ let client =  new MongoClient(url);
 
 //This is Redundant ----
 let UserCol = client.db("LibraryDB").collection("User");
-let LibCol = client.db("LibraryDB").collection("Library");
-
 const router = express.Router()
-router.get("/search/:user_id", async (req,res) =>{
-    /***
-     * Returns json library information based on a give user_id 
-     */
-    let user_id = req.params.user_id;
-    if(await check_user(user_id) == 0){
-      res.status(401)
-      res.json(`User ${user_id} does not exist`)
-    }
-    try{
-      res.json(await getLibraryData(user_id))
-    }catch(error){
-      console.error(error.message);
-    }
-  });
+
+
+
 export default router;
