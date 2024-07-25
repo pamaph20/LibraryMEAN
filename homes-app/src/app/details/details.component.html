@@ -1,0 +1,19 @@
+<article>
+      <img
+        class="listing-photo"
+        [src]="housingLocation?.ImgURL"
+        alt="Exterior photo of {{ housingLocation?.Title }}"
+        crossorigin
+      />
+      <section class="listing-description">
+        <h2 class="listing-heading">{{ housingLocation?.Title}} By</h2>
+        <p class="listing-heading">{{ housingLocation?.Author}}</p>
+      </section>
+      <section class="listing-features">
+        <h2 class="section-heading">About this book</h2>
+        <ul>
+          <li>OLID: {{ housingLocation?.OLID }}</li>
+          <li>ISBN: {{ housingLocation?.ISBN }}</li>
+        </ul>
+      </section>
+    </article>

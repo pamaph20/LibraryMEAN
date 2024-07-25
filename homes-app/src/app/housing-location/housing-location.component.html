@@ -1,0 +1,7 @@
+<section class="listing">
+    <img class=listing-photo [src]="housingLocation.ImgURL" alt="{Here i sthe{housingLocation.Title}}">   
+    <h2 class=listing-heading>{{housingLocation.Title}}</h2>
+    <p class=listing-location>{{housingLocation.Author}}</p>
+    <a [routerLink]="['/details', housingLocation.OLID]">Learn More</a>
+    
+</section>
