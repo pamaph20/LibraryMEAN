@@ -1,6 +1,6 @@
 "use strict"
 import { MongoClient } from "mongodb";
-import { getData } from "./books.mjs";
+import { getMultBooks } from "./books.mjs";
 import Dotenv from "dotenv";
 Dotenv.config()
 const url = `mongodb+srv://${process.env.DB_NAME}:${process.env.DB_Password}@libcluster.e6dnhcx.mongodb.net/?retryWrites=true&w=majority&appName=LibCluster`
@@ -21,13 +21,9 @@ export async function getLibraryData(library_name, user){
       return `${library_name} was not found under user ${user}`
     }
       //gets the list of books in library
-    let books = cur[0]["Books"]
-    let res = [];
-    for (const olid of books) {
-      const data = await getData(olid);
-      res.push(data);
-    }
-    return res;
+    let books = cur[0]["Books"];
+    let data = await getMultBooks(books);
+    return data;
   }
 
   export async function check_lib(library_id){

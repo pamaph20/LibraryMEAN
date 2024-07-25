@@ -20,7 +20,7 @@ export async function getData(olid) {
       return setBook(
         search_data.docs[0].author_name, 
         search_data.docs[0].isbn[0],
-        `https://covers.openlibrary.org/b/olid/${olid}-S.jpg`,
+        `https://covers.openlibrary.org/b/olid/${olid}-L.jpg`,
         search_data.docs[0].title,
         olid
       );
@@ -28,7 +28,17 @@ export async function getData(olid) {
       console.error(error.message);
     }
   }
-
+export async function getMultBooks(olids){
+  /**
+   * Given an array of olids return an array of all the book data
+   */
+  let data = [];
+  for (const olid of olids) {
+    const book = await getData(olid);
+    data.push(book);
+  }
+  return data;
+}
  
   
 //   async function fetchImage(url) {

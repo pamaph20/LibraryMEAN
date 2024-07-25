@@ -7,6 +7,7 @@ import Dotenv from "dotenv";
 import { MongoClient } from "mongodb";
 import library from "../models/library.mjs";
 import { exit } from "process";
+import { getData, getMultBooks } from "../controllers/books.mjs";
 //This is Redundant ----Figure out how to share client with everything
 Dotenv.config()
 const url = `mongodb+srv://${process.env.DB_NAME}:${process.env.DB_Password}@libcluster.e6dnhcx.mongodb.net/?retryWrites=true&w=majority&appName=LibCluster`
@@ -96,5 +97,19 @@ router.post("/add_Library/:libName/:user_id", async (req,res)=> {
     console.error(error.message);
   }
 });
+
+router.get("", async (req,res) => {
+  /**
+   * Gets all the books in db 
+   */
+  const uniqueBooks = await LibCol.aggregate([
+    { $unwind: '$Books' }, // Deconstruct the Books array
+    { $group: { _id: '$Books', count: { $sum: 1 } } }, // Group by book title and count occurrences
+    { $project: { _id: 0, book: '$_id' } } // Project only the book title
+  ]).toArray();
+  const olids = uniqueBooks.map(doc => doc.book);
+  let data = await getMultBooks(olids);
+  res.send(data)
+})
 export default router;
 
