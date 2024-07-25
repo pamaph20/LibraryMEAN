@@ -17,7 +17,7 @@ export async function getLibraryData(library_name, user){
         User_id : user
       }).toArray();
     if(cur.length == 0){
-      //this means that user has no library of that name this works if cur is empty... they may just not have books yet. 
+      //this means that user has no library of that name this works if cur is empty. 
       return `${library_name} was not found under user ${user}`
     }
       //gets the list of books in library
@@ -26,7 +26,6 @@ export async function getLibraryData(library_name, user){
     for (const olid of books) {
       const data = await getData(olid);
       res.push(data);
-      
     }
     return res;
   }

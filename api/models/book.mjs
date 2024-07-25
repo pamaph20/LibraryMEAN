@@ -1,13 +1,14 @@
-let book = {
-    "Title": String,
-    "ISBN": String,
-    "Author": [String],
-    "PublishYear": Number,
-    "ImgURL": String,
-    "OLID": String
-}
 
-export default book;
+export function setBook(author,isbn,img_uri,title,olid){
+    let book = {
+        "Author": author,
+        "ISBN": isbn,
+        "ImgURL": img_uri,
+        "Title": title,
+        "OLID": olid
+    }
+    return book 
+}
 
 
 

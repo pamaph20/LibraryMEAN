@@ -1,6 +1,7 @@
 "use strict"
 import { Int32 } from "mongodb";
-import book from "../models/book.mjs"
+
+import { setBook } from "../models/book.mjs";
 
 export async function getData(olid) {
     /***
@@ -16,19 +17,13 @@ export async function getData(olid) {
         throw new Error(`Response status: ${search_response.status}`);
       }
       const search_data = await search_response.json();
-     let data = {
-      "Author" : search_data.docs[0].author_name,
-      "ISBN" : search_data.docs[0].isbn[0],
-      "ImgURL" : `https://covers.openlibrary.org/b/olid/${olid}-S.jpg`,
-      "Title" : search_data.docs[0].title,
-      "OLID" : olid
-     }
-      // book.Author = search_data.docs[0].author_name;
-      // book.ISBN = search_data.docs[0].isbn[0];
-      // book.ImgURL = `https://covers.openlibrary.org/b/olid/${olid}-S.jpg`;
-      // book.Title = search_data.docs[0].title;
-      // book.OLID = olid
-      return data;
+      return setBook(
+        search_data.docs[0].author_name, 
+        search_data.docs[0].isbn[0],
+        `https://covers.openlibrary.org/b/olid/${olid}-S.jpg`,
+        search_data.docs[0].title,
+        olid
+      );
     } catch (error) {
       console.error(error.message);
     }
