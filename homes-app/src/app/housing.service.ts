@@ -16,7 +16,9 @@ export class HousingService {
     /***\
      * Function that returns all housing locations via an array
      */
+    const allData = await fetch(this.libUrl)
     const data = await fetch(`${this.libSearchurl}/${this.lib_name}/${this.user_id}`)
+    
     return await data.json() ?? []
   }
   

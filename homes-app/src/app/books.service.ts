@@ -15,4 +15,7 @@ export class BooksService {
   async addBook(olid: any){
     return firstValueFrom(this.http.put(`http://localhost:3000/library/add_book/Sams%20Library/${olid}/2`,null))
   }
+  async removeBook(olid: any){
+    return firstValueFrom(this.http.put(`http://localhost:3000/library/remove/Sams%20Library/2/${olid}`,null))
+  }
 }

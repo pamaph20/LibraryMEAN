@@ -1,7 +1,7 @@
 "use strict"
 
 import { check_user } from "../controllers/user.mjs";
-import { getLibraryData, check_lib } from "../controllers/library.mjs";
+import { getLibraryData, check_lib, get_books_list } from "../controllers/library.mjs";
 import express from "express";
 import Dotenv from "dotenv";
 import { MongoClient } from "mongodb";
@@ -61,13 +61,16 @@ router.get("/search/:library_name/:user_id", async (req,res) =>{
       }).toArray();
     try{
         //update the given library array with the new book.
-        library[0]["Books"].push(olid.toString()); 
-      await LibCol.updateOne(
-        {"LibraryName" : library_id,
-          "User_id" : user_id
-        },
-        {$set : {"Books" : library[0]["Books"]}}
-      );
+        if(!library[0]["Books"].includes(olid)){
+          //if the book doesnt already exist
+          library[0]["Books"].push(olid.toString()); 
+          await LibCol.updateOne(
+            {"LibraryName" : library_id,
+              "User_id" : user_id
+            },
+            {$set : {"Books" : library[0]["Books"]}}
+          );
+        }
       res.json({})
       res.status(200)
     }catch (error) {
@@ -75,6 +78,33 @@ router.get("/search/:library_name/:user_id", async (req,res) =>{
     }
   });
 
+
+  
+router.put("/remove/:library_id/:u_id/:olid", async (req,res) => {
+  //since im not working with sessions im doing this the hard way...
+  /**
+   * Removes a book from the current users library
+   */
+  let u_id = req.params.u_id;
+  let lib_id = req.params.library_id;
+  let olid = req.params.olid;
+  let books = await get_books_list(lib_id, u_id);
+  let updated_books = books.filter(function(element) {
+    return element !== olid
+  })
+  try{
+    await LibCol.updateOne(
+      {"LibraryName" : lib_id,
+        "User_id" : u_id
+      },
+      {$set : {"Books" :  updated_books}}
+    );
+  }catch(error){
+    console.log(error)
+  }
+  res.json({})
+  res.status(200);
+});
 router.post("/add_Library/:libName/:user_id", async (req,res)=> {
   /**
    * Endpoint to add a new library!
@@ -97,6 +127,8 @@ router.post("/add_Library/:libName/:user_id", async (req,res)=> {
     console.error(error.message);
   }
 });
+
+
 
 router.get("", async (req,res) => {
   /**

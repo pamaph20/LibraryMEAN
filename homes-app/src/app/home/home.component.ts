@@ -22,6 +22,7 @@ export class HomeComponent {
       this.housingLocationList = housingLocationList;
       this.filteredLocationList = housingLocationList;
     });
+    
   }
   async filterResults(text:string){
     const result = await this.bookService.searchBook(text)
@@ -29,6 +30,7 @@ export class HomeComponent {
   }
   async addBook(text:string){
     const result = await this.bookService.addBook(text);
+    window.location.reload();
     console.log(result)
   }
 }

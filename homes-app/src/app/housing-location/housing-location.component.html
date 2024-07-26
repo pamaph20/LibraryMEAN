@@ -4,4 +4,6 @@
     <p class=listing-location>{{housingLocation.Author}}</p>
     <a [routerLink]="['/details', housingLocation.OLID]">Learn More</a>
     
+    <button class="primary" type="button" (click)="removeBook(housingLocation.OLID)">Remove Book</button>
+    
 </section>
