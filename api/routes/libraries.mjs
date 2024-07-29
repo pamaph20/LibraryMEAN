@@ -15,6 +15,7 @@ let client =  new MongoClient(url);
 
 //This is Redundant ----
 let LibCol = client.db("LibraryDB").collection("Library");
+let BookCol = client.db("LibraryDB").collection("Book");
 
 const router = express.Router()
 router.get("/search/:library_name/:user_id", async (req,res) =>{
@@ -60,6 +61,7 @@ router.get("/search/:library_name/:user_id", async (req,res) =>{
         User_id : user_id
       }).toArray();
     try{
+
         //update the given library array with the new book.
         if(!library[0]["Books"].includes(olid)){
           //if the book doesnt already exist
@@ -134,14 +136,8 @@ router.get("", async (req,res) => {
   /**
    * Gets all the books in db 
    */
-  const uniqueBooks = await LibCol.aggregate([
-    { $unwind: '$Books' }, // Deconstruct the Books array
-    { $group: { _id: '$Books', count: { $sum: 1 } } }, // Group by book title and count occurrences
-    { $project: { _id: 0, book: '$_id' } } // Project only the book title
-  ]).toArray();
-  const olids = uniqueBooks.map(doc => doc.book);
-  let data = await getMultBooks(olids);
-  res.send(data)
+  const books = await BookCol.find().toArray();
+  res.send(books)
 })
 export default router;
 

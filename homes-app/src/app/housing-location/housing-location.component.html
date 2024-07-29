@@ -1,9 +1,10 @@
 <section class="listing">
-    <img class=listing-photo [src]="housingLocation.ImgURL" alt="{Here i sthe{housingLocation.Title}}">   
-    <h2 class=listing-heading>{{housingLocation.Title}}</h2>
-    <p class=listing-location>{{housingLocation.Author}}</p>
-    <a [routerLink]="['/details', housingLocation.OLID]">Learn More</a>
-    
-    <button class="primary" type="button" (click)="removeBook(housingLocation.OLID)">Remove Book</button>
-    
+    <img class=listing-photo [src]="book.ImgURL" alt="{Here i the{book.Title}}">   
+    <h2 class=listing-heading>{{book.Title}}</h2>
+    <p class=listing-location>{{book.Author}}</p>
+    <a [routerLink]="['/details', book.OLID]">Learn More</a> 
+    <!--
+    FIXME: I dont want this to show up on the home page..
+    -->
+    <button *ngIf="showButton" class="primary" type="button" (click)="removeBook(book.OLID)">Remove Book</button>
 </section>

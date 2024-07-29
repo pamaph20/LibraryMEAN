@@ -11,7 +11,9 @@ let booksCol = client.db("LibraryDB").collection("Book");
 export async function getData(olid) {
     /***
      * Get a books title, author, and ISBN based on OLId
+     * FIXME : Needs to search off of the name of the book evbentaully not the olid.. 
      */
+    
     try {
       const search_uri = `https://openlibrary.org/search.json?q=${olid}`;
       const search_response = await fetch(search_uri);

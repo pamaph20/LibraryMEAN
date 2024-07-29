@@ -1,26 +1,30 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HousingLocationComponent } from '../housing-location/housing-location.component';
-import { HousingLocation } from '../housing-location';
+import { Book } from '../Book';
 import { HousingService } from '../housing.service';
 import { BooksService } from '../books.service';
 import { HttpClientModule } from '@angular/common/http';
+import { ActivatedRoute } from '@angular/router';
+import { UserLibraryComponent } from '../user-library/user-library.component';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, HousingLocationComponent],
+  imports: [CommonModule, HousingLocationComponent, UserLibraryComponent],
   templateUrl:'./home.component.html',
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-  housingLocationList: HousingLocation[] = []
+  showButton: boolean = false;
+  route : ActivatedRoute = inject(ActivatedRoute);
+  BookList: Book[] = []
   housingService: HousingService = inject(HousingService)
   bookService: BooksService = inject(BooksService)
-  filteredLocationList : HousingLocation[] = []
+  
   constructor() {
-    this.housingService.getAllBooks().then((housingLocationList : HousingLocation[]) => {
-      this.housingLocationList = housingLocationList;
-      this.filteredLocationList = housingLocationList;
+    this.housingService.getAllBooks().then((BookList : Book[]) => {
+      this.BookList = BookList;
+      console.log(this.BookList)
     });
     
   }
@@ -33,4 +37,5 @@ export class HomeComponent {
     window.location.reload();
     console.log(result)
   }
+   
 }

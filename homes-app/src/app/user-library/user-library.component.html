@@ -1,0 +1,11 @@
+
+<section>
+    <form class = addBook>
+      <input type="text" placeholder="Seach Books" #book/>
+      <button class="primary" type="button" >Search</button>
+    </form>
+    <br>
+  </section>
+  <section class="results">
+    <app-housing-location *ngFor = "let book of BookList" [book] = "book" [showButton] = "showButton"></app-housing-location>
+  </section>

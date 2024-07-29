@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HousingLocation } from './housing-location';
+import { Book } from './Book';
 @Injectable({
   providedIn: 'root'
 })
@@ -12,17 +12,20 @@ export class HousingService {
   lib_name = "Sams%20Library" 
   user_id = "2"
   bookUrl = "http://localhost:3000/books/search"
-  async getAllBooks (): Promise<HousingLocation[]> {
+  async getAllBooks (): Promise<Book[]> {
     /***\
      * Function that returns all housing locations via an array
      */
     const allData = await fetch(this.libUrl)
-    const data = await fetch(`${this.libSearchurl}/${this.lib_name}/${this.user_id}`)
-    
-    return await data.json() ?? []
+    return await allData.json() ?? []
+  }
+
+  async getUserBooks(user_id : string, library_name : string): Promise<Book[]>{
+    const data = await fetch(`${this.libSearchurl}/${library_name}/${user_id}`);
+    return await data.json() ?? [];
   }
   
-  async getHousingLocationById(olid: string): Promise<HousingLocation | undefined> {
+  async getHousingLocationById(olid: string): Promise<Book | undefined> {
     //takes an id returns a housing location
     const data = await fetch(`${this.bookUrl}/${olid}`);
     return await data.json() ?? {};
