@@ -4,6 +4,7 @@ import { DetailsComponent } from "./details/details.component";
 import { HousingLocationComponent } from "./housing-location/housing-location.component";
 import { UserLibraryComponent } from "./user-library/user-library.component";
 import { UserPageComponent } from "./user-page/user-page.component";
+import { LoginComponent } from "./login/login.component";
 const routeConfig: Routes = [
     //where each route goes for each view 
     {
@@ -28,6 +29,11 @@ const routeConfig: Routes = [
         path: ':user_id',
         component: UserPageComponent,
         title: `User Page`
+    },
+    {
+        path: 'login',
+        component: LoginComponent,
+        title: 'Login Page'
     }
     
 

@@ -11,3 +11,7 @@
   .content {
     padding: var(--content-padding);
   }
+  .btn{
+    margin:5px;
+
+  }
