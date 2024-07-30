@@ -9,9 +9,8 @@ export class HousingService {
   libSearchurl = "http://localhost:3000/library/search"
   libUrl = "http://localhost:3000/library/"
   //testing info
-  lib_name = "Sams%20Library" 
-  user_id = "2"
-  bookUrl = "http://localhost:3000/books/search"
+
+
   async getAllBooks (): Promise<Book[]> {
     /***\
      * Function that returns all housing locations via an array
@@ -27,7 +26,7 @@ export class HousingService {
   
   async getHousingLocationById(olid: string): Promise<Book | undefined> {
     //takes an id returns a housing location
-    const data = await fetch(`${this.bookUrl}/${olid}`);
+    const data = await fetch(`http://localhost:3000/books/search/${olid}`);
     return await data.json() ?? {};
     //returns a housing location where the location id is equal to the given id
   }

@@ -47,7 +47,7 @@ export async function getMultBooks(olids){
   
 export async function check_in_mongo(olid){
   //if the book is not in books array already, add it for future use
-  let cur = await booksCol.findOne({
+  let cur = await booksCol.find({
     OLID : olid
   });
   if(cur == null){
@@ -60,5 +60,6 @@ export async function check_in_mongo(olid){
   });
   return data;
 }
+
 
 

@@ -17,20 +17,25 @@ import { UserLibraryComponent } from '../user-library/user-library.component';
 export class HomeComponent {
   showButton: boolean = false;
   route : ActivatedRoute = inject(ActivatedRoute);
-  BookList: Book[] = []
+  BookList: Book[] = [];
+  FilteredBookList: Book[] = [];
   housingService: HousingService = inject(HousingService)
   bookService: BooksService = inject(BooksService)
   
   constructor() {
     this.housingService.getAllBooks().then((BookList : Book[]) => {
+      this.FilteredBookList = BookList;
       this.BookList = BookList;
       console.log(this.BookList)
     });
     
   }
   async filterResults(text:string){
-    const result = await this.bookService.searchBook(text)
-    console.log(result)
+    
+    if(!text) this.FilteredBookList = this.BookList;
+    this.FilteredBookList = this.BookList.filter(
+      Book => Book?.Title.toLowerCase().includes(text.toLowerCase())
+    )
   }
   async addBook(text:string){
     const result = await this.bookService.addBook(text);
