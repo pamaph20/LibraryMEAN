@@ -3,14 +3,14 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     
     
-    <nav class="navbar" style="background-color: #e3f2fd;">
+    <nav class="navbar" style="background-color: #e3f2fd;" >
       <div class="container-fluid">
         <div>
           <a class="navbar-brand" href="/">Open Library</a>
-          <button class="btn btn-primary btn" type="button" [routerLink]="['library/1/Drews Library']">Drews Personal Libraries</button>
-          <button class="btn btn-primary btn" type="button" [routerLink]="['library/3/Caitlyn Library']">Caityns Personal Libraries</button>
+          <button class="btn btn-primary btn" type="button" [routerLink]="['library/1/Drews Library']" >Drews Personal Libraries</button>
+          <button class="btn btn-primary btn" type="button" [routerLink]="['library/3/Caitlyn Library']" *ngIf="login">Caityns Personal Libraries</button>
         </div>
-        <button class="btn btn-primary btn" type="button" [routerLink]="['login']">Login</button>
+        <button class="btn btn-primary btn" type="button" [routerLink]="['/login']">Login</button>
       </div>
     </nav>
     <section class="content">

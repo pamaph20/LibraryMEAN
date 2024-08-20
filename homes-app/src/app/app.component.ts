@@ -19,6 +19,7 @@ import { Book } from './Book';
 })
 export class AppComponent {
   @Input() book!: Book;
+  @Input() login: boolean = false;
   title = 'homes';
   route : ActivatedRoute = inject(ActivatedRoute);
   BookList: Book[] = [];

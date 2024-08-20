@@ -5,13 +5,16 @@ import { HousingLocationComponent } from "./housing-location/housing-location.co
 import { UserLibraryComponent } from "./user-library/user-library.component";
 import { UserPageComponent } from "./user-page/user-page.component";
 import { LoginComponent } from "./login/login.component";
+import { UpdateUserAuthComponent } from "./forgot-info/update-user-auth/update-user-auth.component";
+import { NewUserComponent } from "./forgot-info/new-user/new-user.component";
+import { ForgotInfoComponent } from "./forgot-info/forgot-info.component";
 const routeConfig: Routes = [
     //where each route goes for each view 
     {
         //base homepage route
         path: '',
         component: HomeComponent,
-        title: 'Home Page'
+        title: 'Home Page',
     },
     {
         path:'details/:olid',
@@ -26,15 +29,28 @@ const routeConfig: Routes = [
 
     },
     {
-        path: ':user_id',
-        component: UserPageComponent,
-        title: `User Page`
-    },
-    {
         path: 'login',
         component: LoginComponent,
-        title: 'Login Page'
+        title: 'Login Page',
+    },
+    {
+        path:'login/help',
+        component: ForgotInfoComponent,
+        title: 'Help',
+        children: [
+            {
+                path: 'forgotPassword',
+                component: UpdateUserAuthComponent,
+                title: 'Forgot Password Page'
+            },
+            {
+                path: 'newUser',
+                component: NewUserComponent,
+                title: 'New User'
+            }
+        ]
     }
+  
     
 
 ];

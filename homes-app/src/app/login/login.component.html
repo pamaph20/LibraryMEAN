@@ -1,0 +1,30 @@
+<div class="login-container">
+    <div *ngIf="login">
+        <h2>Login</h2>
+        <form>
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required class="form-control" />
+          </div>
+      
+          <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required class="form-control" />
+          </div>
+      
+          <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+      
+        <div class="options-section">
+          <a href="/login/help/forgotPassword" class="forgot-link">Forgot Username?</a>
+          <span> | </span>
+          <a href="/login/help/forgotPassword" class="forgot-link">Forgot Password?</a>
+        </div>
+      
+        <div class="create-account-section">
+          <button class="btn btn-secondary" [routerLink] = "['/login/help/newUser']">Create New Account</button>
+        </div>
+    </div>
+     <router-outlet></router-outlet> 
+  </div>
+  
