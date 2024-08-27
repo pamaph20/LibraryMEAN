@@ -1,18 +1,18 @@
 <div class="login-container">
     <div *ngIf="login">
         <h2>Login</h2>
-        <form>
+        <form onsubmit="return  false">
           <div class="form-group">
             <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required class="form-control" />
+            <input type="email" id="email" name="email" required class="form-control" #email/>
           </div>
       
           <div class="form-group">
             <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required class="form-control" />
+            <input type="password" id="password" name="password" required class="form-control" #password/>
           </div>
       
-          <button type="submit" class="btn btn-primary">Login</button>
+          <button type="submit" class="btn btn-primary" (click)="login(email.value,password.value)">Login</button>
         </form>
       
         <div class="options-section">

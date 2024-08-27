@@ -1,11 +1,9 @@
-
 <section>
-  <form class = addBook>
-    <input type="text" placeholder="Seach Books" #book/>
+  <form class="addBook">
+    <input type="text" placeholder="Search Books" #book />
     <button class="primary" type="button" (click)="filterResults(book.value)">Search</button>
   </form>
-  <br>
-</section>
-<section class="results">
-  <app-housing-location *ngFor = "let book of FilteredBookList" [book] = "book" ></app-housing-location>
+  <section class="results">
+    <app-housing-location *ngFor="let book of FilteredBookList" [book]="book"></app-housing-location>
+  </section>
 </section>

@@ -11,6 +11,11 @@ import { ActivatedRoute, RouterModule } from '@angular/router';
 })
 export class LoginComponent {
   route : ActivatedRoute = inject(ActivatedRoute);
-  @Input() login: boolean = true;
   
+  
+
+  async login(email : string, password : string){
+    //finish
+    console.log(email, password)
+  }
 }

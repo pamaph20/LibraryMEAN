@@ -15,6 +15,7 @@ export class HousingLocationComponent {
   @Input() book!: Book;
   bookService: BooksService = inject(BooksService)
   route : ActivatedRoute = inject(ActivatedRoute);
+  router: any;
   async removeBook(OLID:string,){
     const user_id = (this.route.snapshot.params["user_id"]);
     const library_name = (this.route.snapshot.params["library_id"]);
@@ -22,4 +23,6 @@ export class HousingLocationComponent {
     window.location.reload();
     console.log(result)
   }
+  
+  
 }

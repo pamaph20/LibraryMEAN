@@ -1,10 +1,11 @@
-<section class="listing">
-    <img class=listing-photo [src]="book.ImgURL" alt="{Here i the{book.Title}}">   
-    <h2 class=listing-heading>{{book.Title}}</h2>
-    <p class=listing-location>{{book.Author}}</p>
-    <a [routerLink]="['/details', book.OLID]">Learn More</a> 
-    <!--
-    FIXME: I dont want this to show up on the home page..
-    -->
-    <button *ngIf="showButton" class="primary" type="button" (click)="removeBook(book.OLID)">Remove Book</button>
-</section>
+<a class="listing-link" [routerLink]="['/details', book.OLID]">
+    <section class="listing">
+      <img class="listing-photo" [src]="book.ImgURL" alt="{{book.Title}}" />
+      <div class="listing-details">
+        <h2 class="listing-heading">{{book.Title}}</h2>
+        <p class="listing-author">{{book.Author}}</p>
+        <button *ngIf="showButton" class="primary-btn" type="button" (click)="removeBook(book.OLID); $event.stopPropagation()">Remove Book</button>
+      </div>
+    </section>
+  </a>
+  
