@@ -15,7 +15,6 @@ import { UserLibraryComponent } from '../user-library/user-library.component';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-  showButton: boolean = false;
   route : ActivatedRoute = inject(ActivatedRoute);
   BookList: Book[] = [];
   FilteredBookList: Book[] = [];

@@ -1,11 +1,25 @@
 <a class="listing-link" [routerLink]="['/details', book.OLID]">
-    <section class="listing">
+  <section class="listing" *ngIf="!BookStyle" >
+     <!-- HomePage Books -->
+    <img class="listing-photo" [src]="book.ImgURL" alt="{{book.Title}}" />
+    <div class="listing-details">
+      <h2 class="listing-heading">{{book.Title}}</h2>
+      <p class="listing-author">{{book.Author}}</p>
+    </div> 
+  </section>
+  <section *ngIf="BookStyle" >
+    <section class="listing"  [ngClass]="{
+      'read-book': checkBook(book.OLID), 
+      'unread-book': !checkBook(book.OLID),
+      'hidden': !BookStyle
+    }">
       <img class="listing-photo" [src]="book.ImgURL" alt="{{book.Title}}" />
       <div class="listing-details">
         <h2 class="listing-heading">{{book.Title}}</h2>
         <p class="listing-author">{{book.Author}}</p>
-        <button *ngIf="showButton" class="primary-btn" type="button" (click)="removeBook(book.OLID); $event.stopPropagation()">Remove Book</button>
       </div>
+      <button class="primary-btn remove-btn" type="button" (click)="removeBook(book.OLID); $event.stopPropagation()">Remove Book</button>
     </section>
-  </a>
-  
+    
+  </section>
+</a>

@@ -7,7 +7,7 @@ import Dotenv from "dotenv";
 import { MongoClient } from "mongodb";
 import library from "../models/library.mjs";
 import { exit } from "process";
-import { getData, getMultBooks } from "../controllers/books.mjs";
+import { check_in_mongo, getData, getMultBooks } from "../controllers/books.mjs";
 //This is Redundant ----Figure out how to share client with everything
 Dotenv.config()
 const url = `mongodb+srv://${process.env.DB_NAME}:${process.env.DB_Password}@libcluster.e6dnhcx.mongodb.net/?retryWrites=true&w=majority&appName=LibCluster`
@@ -61,7 +61,7 @@ router.get("/search/:library_name/:user_id", async (req,res) =>{
         User_id : user_id
       }).toArray();
     try{
-
+        check_in_mongo(olid);
         //update the given library array with the new book.
         if(!library[0]["Books"].includes(olid)){
           //if the book doesnt already exist

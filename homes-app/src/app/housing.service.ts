@@ -13,7 +13,7 @@ export class HousingService {
 
   async getAllBooks (): Promise<Book[]> {
     /***\
-     * Function that returns all housing locations via an array
+     * Function that returns all books via an array
      */
     const allData = await fetch(this.libUrl)
     return await allData.json() ?? []
@@ -21,6 +21,11 @@ export class HousingService {
 
   async getUserBooks(user_id : string, library_name : string): Promise<Book[]>{
     const data = await fetch(`${this.libSearchurl}/${library_name}/${user_id}`);
+    return await data.json() ?? [];
+  }
+
+  async getUsersReadBooks(user_id:string) : Promise<String[]>{
+    const data = await fetch(`http://localhost:3000/user/alreadyRead/${user_id}`);
     return await data.json() ?? [];
   }
   

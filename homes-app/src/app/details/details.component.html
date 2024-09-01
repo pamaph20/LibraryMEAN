@@ -1,26 +1,45 @@
-<article style="display: flex; align-items: flex-start; max-width: 600px; margin: 20px auto; padding: 20px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); background-color: #ffffff;">
-  <img
-      class="listing-photo"
-      [src]="housingLocation?.ImgURL"
-      alt="Exterior photo of {{ housingLocation?.Title }}"
-      style="width: 300px; height: auto; border-radius: 8px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); margin-right: 20px;"
-      crossorigin
-  />
-  <div style="flex: 1;">
-      <section class="listing-description" style="margin-bottom: 20px;">
-          <h2 class="listing-heading" style="font-size: 1.5rem; font-weight: 600; color: #1a202c; margin-bottom: 5px;">{{ housingLocation?.Title }}</h2>
-          <p class="listing-author" style="font-size: 1rem; color: #4a5568;">By {{ housingLocation?.Author }}</p>
-      </section>
-      <section class="listing-features">
-          <h2 class="section-heading" style="font-size: 1.25rem; font-weight: 500; color: #2d3748; margin-bottom: 15px;">About this book</h2>
-          <ul style="list-style: none; padding: 0;">
-              <li style="margin-bottom: 10px; display: flex; align-items: center;">
-                  <span style="margin-right: 8px;">📚</span> OLID: {{ housingLocation?.OLID }}
-              </li>
-              <li style="margin-bottom: 10px; display: flex; align-items: center;">
-                  <span style="margin-right: 8px;">🔖</span> ISBN: {{ housingLocation?.ISBN }}
-              </li>
-          </ul>
-      </section>
-  </div>
-</article>
+<article class="book-info">
+    <header class="book-header">
+      <img
+        class="book-photo"
+        [src]="housingLocation?.ImgURL"
+        alt="Cover of {{ housingLocation?.Title }}"
+      />
+      <div class="book-title-author">
+        <h1 class="book-title">{{ housingLocation?.Title }}</h1>
+        <p class="book-author">By {{ housingLocation?.Author }}</p>
+      </div>
+    </header>
+  
+    <section class="book-details">
+      <h2 class="details-heading">About this book</h2>
+      <dl class="details-list">
+        <div class="detail-item">
+          <dt class="detail-label">ISBN:</dt>
+          <dd class="detail-value">{{ housingLocation?.ISBN }}</dd>
+        </div>
+        <div class="detail-item">
+          <dt class="detail-label">Release Date:</dt>
+          <dd class="detail-value">{{ housingLocation?.releaseDate }}</dd>
+        </div>
+        <div class="detail-item">
+          <dt class="detail-label">Genre:</dt>
+          <dd class="detail-value">{{ housingLocation?.genre }}</dd>
+        </div>
+        <div class="detail-item">
+          <dt class="detail-label">Synopsis:</dt>
+          <dd class="detail-value">{{ housingLocation?.synopsis }}</dd>
+        </div>
+        <div class="detail-item">
+            <dt class="detail-label">Buy Now:</dt>
+            <dd class="detail-value">
+                <a class="buy-link" [href]="housingLocation?.amazon" target="_blank" rel="noopener noreferrer">
+                    Purchase on Amazon
+                </a>
+            </dd>
+        </div>
+        
+      </dl>
+    </section>
+  </article>
+  

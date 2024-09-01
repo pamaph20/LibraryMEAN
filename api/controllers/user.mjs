@@ -65,6 +65,20 @@ export async function check_user(id){
     });
     return true; 
   }
+  export async function getReadBooks(userId){
+    let readbooks = await col.findOne({
+      "user_id":userId
+    });
+    return readbooks["booksRead"];
+  }
+  export async function readBook(user_id, olid){
+    col.updateOne(
+    {"user_id":user_id},
+    { $push: { "booksRead": olid } }
+  );
+
+ 
+  }
 
 
 

@@ -22,14 +22,20 @@ export class UserLibraryComponent {
   route : ActivatedRoute = inject(ActivatedRoute);
   BookList: Book[] = [];
   housingService: HousingService = inject(HousingService);
-  showButton: boolean = true;
+  ReadBooks: String[] = [];
+  BookStyle: boolean = true;
   constructor() {
     const user_id = (this.route.snapshot.params["user_id"]);
     const library_name = (this.route.snapshot.params["library_id"]);
     this.housingService.getUserBooks(user_id, library_name).then((UsersBooks : Book[]) => {
       this.BookList = UsersBooks;
-      console.log(this.BookList);
+      console.log(this.BookList, "owned Books");
     }); 
+    this.housingService.getUsersReadBooks(user_id).then((read: String[]) => {
+      this.ReadBooks = read;
+      console.log(this.ReadBooks, "Read Books")
+    })
+    
   }
   async filterResults(text:string){
     const result = await this.bookService.searchBook(text)

@@ -26,7 +26,10 @@ export async function getData(olid) {
         search_data.docs[0].isbn[0],
         `https://covers.openlibrary.org/b/olid/${olid}-L.jpg`,
         search_data.docs[0].title,
-        olid
+        olid,
+        search_data.docs[0].subject_facet[0],
+        "",
+        search_data.docs[0].first_publish_year,
       );
     } catch (error) {
       console.error(error.message);
@@ -47,8 +50,8 @@ export async function getMultBooks(olids){
   
 export async function check_in_mongo(olid){
   //if the book is not in books array already, add it for future use
-  let cur = await booksCol.find({
-    OLID : olid
+  let cur = await booksCol.findOne({
+    "OLID" : olid
   });
   if(cur == null){
     //does not exist, therefore add it to mongo

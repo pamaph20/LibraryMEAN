@@ -6,10 +6,7 @@ import { firstValueFrom } from 'rxjs';
   providedIn: 'root'
 })
 export class BooksService {
-
   private http = inject(HttpClient);
-  
-  
   async searchBook(olid: any) {
     const allData = await fetch(`http://localhost:3000/books/search/${olid}`)
     return await allData.json() ?? []
@@ -19,5 +16,8 @@ export class BooksService {
   }
   async removeBook(olid: string, user_id: string, library_id: string){
     return firstValueFrom(this.http.put(`http://localhost:3000/library/remove/${library_id}/${user_id}/${olid}`,null))
+  }
+  async readBook(olid:string, user_id:string){
+    return firstValueFrom(this.http.put(`http://localhost:3000/library/user/readBook/${olid}/${user_id}`, null))
   }
 }

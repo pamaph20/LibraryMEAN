@@ -3,5 +3,9 @@ export interface Book {
     ISBN : string,
     ImgURL : string,
     Title : string,
-    OLID : string
+    OLID : string,
+    genre: string,
+    synopsis: string,
+    releaseDate: string,
+    amazon:string
 }

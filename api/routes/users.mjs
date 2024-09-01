@@ -1,9 +1,7 @@
 "use strict"
 
 import express from "express";
-
-
-import { createUser } from "../controllers/user.mjs";
+import { createUser, getReadBooks, readBook } from "../controllers/user.mjs";
 //This is Redundant ----Figure out how to share client with everything
 
 const router = express.Router()
@@ -18,5 +16,21 @@ router.post("/add_new_user/:username/:email", async (req, res) => {
     }
     res.json({})
     res.status(201) 
+})
+
+router.post("/readBook/:olid/:user_id", async (req,res) => {
+    //should never run into a missing user issue so... hope and pray
+    let olid = req.params.olid;
+    let user_id = req.params.user_id;
+    readBook(user_id, olid);
+    res.json({});
+    res.status(201);
+})
+
+router.get("/alreadyRead/:user_id", async (req,res) => {
+    let user_id = req.params.user_id;
+    let bookslist = await getReadBooks(user_id);
+    res.json(bookslist);
+    res.status(201)
 })
 export default router;

@@ -1,62 +1,119 @@
-.listing-photo {
-    height: 1000px;
-    width: 50%;
-    object-fit: cover;
-    border-radius: 30px;
-    float: right;
+/* Main Article Container */
+.book-info {
+  max-width: 700px;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 12px;
+  background-color: #f9f9f9;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Header Section */
+.book-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.book-photo {
+  width: 150px;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-right: 20px;
+}
+
+.book-title-author {
+  flex: 1;
+}
+
+.book-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #333;
+  margin: 0;
+}
+
+.book-author {
+  font-size: 1.25rem;
+  color: #666;
+  margin-top: 5px;
+}
+
+/* Details Section */
+.book-details {
+  margin-top: 20px;
+}
+
+.details-heading {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #444;
+  margin-bottom: 15px;
+}
+
+.details-list {
+  padding: 0;
+  margin: 0;
+}
+
+.detail-item {
+  margin-bottom: 12px;
+  display: flex;
+  flex-direction: column;
+}
+
+.detail-label {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.detail-value {
+  font-size: 1.125rem;
+  color: #555;
+  margin-top: 4px;
+}
+
+@media (max-width: 768px) {
+  .book-header {
+      flex-direction: column;
+      align-items: center;
   }
-  .listing-heading {
-    font-size: 48pt;
-    font-weight: bold;
-    margin-bottom: 15px;
-  }
-  .listing-location::before {
-    content: url('/assets/location-pin.svg') / '';
-  }
-  .listing-location {
-    font-size: 24pt;
-    margin-bottom: 15px;
-  }
-  .listing-features > .section-heading {
-    color: var(--secondary-color);
-    font-size: 24pt;
-    margin-bottom: 15px;
-  }
-  .listing-features {
-    margin-bottom: 20px;
-  }
-  .listing-features li {
-    font-size: 14pt;
-  }
-  li {
-    list-style-type: none;
-  }
-  .listing-apply .section-heading {
-    font-size: 18pt;
-    margin-bottom: 15px;
-  }
-  label, input {
-    display: block;
-  }
-  label {
-    color: var(--secondary-color);
-    font-weight: bold;
-    text-transform: uppercase;
-    font-size: 12pt;
-  }
-  input {
-    font-size: 16pt;
-    margin-bottom: 15px;
-    padding: 10px;
-    width: 400px;
-    border-top: none;
-    border-right: none;
-    border-left: none;
-    border-bottom: solid .3px;
-  }
-  @media (max-width: 1024px) {
-    .listing-photo {
+
+  .book-photo {
       width: 100%;
-      height: 400px;
-    }
+      margin-right: 0;
+      margin-bottom: 20px;
   }
+
+  .book-title-author {
+      text-align: center;
+  }
+}
+/* Buy Now Link Styling */
+.buy-link {
+  color: #007185; /* Amazon link color */
+  font-size: 1.125rem;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-block;
+  padding: 8px 12px;
+  border-radius: 4px;
+  background-color: #f0c14b; /* Amazon button color */
+  border: 1px solid #a88734; /* Amazon button border color */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.buy-link:hover {
+  background-color: #e7b33f; /* Darker yellow for hover */
+  color: #fff; /* White text color on hover */
+  text-decoration: underline;
+}
+
+.buy-link:focus {
+  outline: 2px solid #ff9900; /* Highlight the link when focused */
+  outline-offset: 4px;
+}
