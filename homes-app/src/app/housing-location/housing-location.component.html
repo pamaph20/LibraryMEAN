@@ -5,6 +5,7 @@
     <div class="listing-details">
       <h2 class="listing-heading">{{book.Title}}</h2>
       <p class="listing-author">{{book.Author}}</p>
+      
     </div> 
   </section>
   <section *ngIf="BookStyle" >
@@ -17,8 +18,14 @@
       <div class="listing-details">
         <h2 class="listing-heading">{{book.Title}}</h2>
         <p class="listing-author">{{book.Author}}</p>
+        <button class="read-button" (click)="readBook(book.OLID); $event.stopPropagation(); $event.preventDefault();">
+          Read
+        </button>
       </div>
-      <button class="primary-btn remove-btn" type="button" (click)="removeBook(book.OLID); $event.stopPropagation()">Remove Book</button>
+      
+      <button class="circle-x-button" (click)="removeBook(book.OLID);$event.stopPropagation();$event.preventDefault(); ">
+        <span class="x-mark">✕</span>
+    </button>
     </section>
     
   </section>

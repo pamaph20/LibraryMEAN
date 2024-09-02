@@ -30,16 +30,17 @@ export class HomeComponent {
     
   }
   async filterResults(text:string){
-    
+    console.log("here")
     if(!text) this.FilteredBookList = this.BookList;
     this.FilteredBookList = this.BookList.filter(
       Book => Book?.Title.toLowerCase().includes(text.toLowerCase())
     )
   }
-  async addBook(text:string){
-    const result = await this.bookService.addBook(text);
+
+  addBook(OLID:string){
+    this.bookService.addBook(OLID);
     window.location.reload();
-    console.log(result)
   }
+
    
 }

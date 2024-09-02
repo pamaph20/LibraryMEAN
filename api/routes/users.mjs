@@ -3,7 +3,7 @@
 import express from "express";
 import { createUser, getReadBooks, readBook } from "../controllers/user.mjs";
 //This is Redundant ----Figure out how to share client with everything
-
+//TODO JWT Authentication at some point
 const router = express.Router()
 
 router.post("/add_new_user/:username/:email", async (req, res) => {
@@ -25,6 +25,7 @@ router.post("/readBook/:olid/:user_id", async (req,res) => {
     readBook(user_id, olid);
     res.json({});
     res.status(201);
+    
 })
 
 router.get("/alreadyRead/:user_id", async (req,res) => {
@@ -33,4 +34,15 @@ router.get("/alreadyRead/:user_id", async (req,res) => {
     res.json(bookslist);
     res.status(201)
 })
+
+router.post('/login', async(req,res) =>{
+    //authenticate The User dopnt really have to 
+    
+    const username = req.body.username;
+    const user = 
+    JsonWebTokenError.sign()
+})
+
+
+
 export default router;

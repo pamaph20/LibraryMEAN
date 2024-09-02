@@ -29,7 +29,7 @@ export class HousingService {
     return await data.json() ?? [];
   }
   
-  async getHousingLocationById(olid: string): Promise<Book | undefined> {
+  async getHousingLocationById(olid: string): Promise<Book> {
     //takes an id returns a housing location
     const data = await fetch(`http://localhost:3000/books/search/${olid}`);
     return await data.json() ?? {};

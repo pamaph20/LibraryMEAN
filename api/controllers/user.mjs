@@ -1,4 +1,4 @@
-//Figure out client sharing
+//TODO JWT Authentication at some point
 import { MongoClient } from "mongodb";
 import { getData } from "./books.mjs";
 import { argon2id } from "argon2";
@@ -77,8 +77,8 @@ export async function check_user(id){
     { $push: { "booksRead": olid } }
   );
 
- 
-  }
+}
+
 
 
 

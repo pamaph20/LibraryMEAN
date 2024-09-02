@@ -21,6 +21,7 @@ export class UserLibraryComponent {
   bookService: BooksService = inject(BooksService);
   route : ActivatedRoute = inject(ActivatedRoute);
   BookList: Book[] = [];
+  FilteredBookList: Book[] = [];
   housingService: HousingService = inject(HousingService);
   ReadBooks: String[] = [];
   BookStyle: boolean = true;
@@ -37,8 +38,12 @@ export class UserLibraryComponent {
     })
     
   }
+  
   async filterResults(text:string){
-    const result = await this.bookService.searchBook(text)
-    console.log(result)
+    console.log(text)
+    if(!text) this.FilteredBookList = this.BookList;
+    this.FilteredBookList = this.BookList.filter(
+      Book => Book?.Title.toLowerCase().includes(text.toLowerCase())
+    )
   }
 }

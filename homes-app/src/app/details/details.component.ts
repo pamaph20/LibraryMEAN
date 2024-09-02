@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Book } from '../Book';
 import { HousingService } from '../housing.service';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { BooksService } from '../books.service';
 
 @Component({
   selector: 'app-details',
@@ -15,12 +16,13 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 export class DetailsComponent {
   route : ActivatedRoute = inject(ActivatedRoute);
   housingService = inject(HousingService);
-  housingLocation : Book |undefined;
+  housingLocation : Book | undefined ;
   applyForm = new FormGroup({
     firstName : new FormControl(""),
     lastName : new FormControl(""),
     email : new FormControl("")
   })
+  bookService: BooksService = inject(BooksService)
   constructor() {
     const housingLocationID = (this.route.snapshot.params["olid"]);
     console.log(this.route.snapshot)
@@ -35,6 +37,11 @@ export class DetailsComponent {
       this.applyForm.value.lastName ?? '',
       this.applyForm.value.email ?? ''
     );
+  }
+  async addBook(text?:string){
+    const result = await this.bookService.addBook(text);
+    window.location.reload();
+    console.log(result)
   }
 
 }

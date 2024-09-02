@@ -12,12 +12,12 @@ export class BooksService {
     return await allData.json() ?? []
   }
   async addBook(olid: any){
-    return firstValueFrom(this.http.put(`http://localhost:3000/library/add_book/Sams%20Library/${olid}/2`,null))
+    return firstValueFrom(this.http.put(`http://localhost:3000/library/add_book/Drews%20Library/${olid}/1`,null))
   }
   async removeBook(olid: string, user_id: string, library_id: string){
     return firstValueFrom(this.http.put(`http://localhost:3000/library/remove/${library_id}/${user_id}/${olid}`,null))
   }
   async readBook(olid:string, user_id:string){
-    return firstValueFrom(this.http.put(`http://localhost:3000/library/user/readBook/${olid}/${user_id}`, null))
+    return firstValueFrom(this.http.post(`http://localhost:3000/user/readBook/${olid}/${user_id}`, null))
   }
 }

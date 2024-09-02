@@ -19,7 +19,6 @@ export class HousingLocationComponent {
   router: any;
   
   checkBook(OLID:String){
-   
     return(this.ReadBooks.includes(OLID))
   }
  

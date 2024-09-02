@@ -1,48 +1,59 @@
-/* Put these styles in: src/home/home.component.css */
+/* Container for the forms */
+section {
+  margin: 20px; /* Add some space around the section */
+}
 
+/* Styling for both forms */
+.filterResults, .addBook {
+  display: flex; /* Align items horizontally */
+  align-items: center; /* Center items vertically */
+  gap: 10px; /* Space between input and button */
+  margin-bottom: 15px; /* Space between forms */
+}
+
+/* Styling for the input fields in both forms */
+.filterResults input[type="text"], .addBook input[type="text"] {
+  border: solid 1px var(--primary-color);
+  padding: 10px;
+  border-radius: 8px;
+  width: 100%; /* Full width of the container */
+  max-width: 300px; /* Maximum width for input fields */
+  box-sizing: border-box; /* Include padding in the width calculation */
+}
+
+/* Styling for buttons in both forms */
+.filterResults button.primary, .addBook button.primary {
+  padding: 10px 15px; /* Comfortable button padding */
+  border-radius: 8px;
+  background-color: var(--primary-color);
+  color: white;
+  border: 1px solid transparent; /* Ensure button border is present */
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+/* Hover effect for buttons */
+.filterResults button.primary:hover, .addBook button.primary:hover {
+  background-color: var(--primary-color-hover);
+  border-color: var(--primary-color-hover); /* Show border on hover */
+  transform: scale(1.05);
+}
+
+/* Optional: To improve button visibility */
+.filterResults button.primary:focus, .addBook button.primary:focus {
+  outline: 2px solid var(--primary-color); /* Add outline on focus */
+  outline-offset: 2px; /* Offset outline for better visibility */
+}
+
+/* Styling for the results container */
 .results {
-    display: grid;
-    column-gap: 14px;
-    row-gap: 14px;
-    grid-template-columns: repeat(auto-fill, minmax(400px, 400px));
-    margin-top: 50px;
-    justify-content: space-around;
-  }
-  
+  display: flex; /* Align items horizontally */
+  flex-wrap: wrap; /* Allow items to wrap to the next line if they overflow */
+  gap: 20px; /* Space between items */
+}
 
-  
-  button {
-    padding: 10px;
-    border: solid 1px var(--primary-color);
-    background: var(--primary-color);
-    color: white;
-    border-radius: 8px;
-  }
-
-  .addBook{
-    input[type="text"] {
-      border: solid 1px var(--primary-color);
-      padding: 10px;
-      border-radius: 8px;
-      margin-right: 4px;
-      display: inline-block;
-      width: 30%;
-    }
-  }
-  
-  @media (min-width: 500px) and (max-width: 768px) {
-    .results {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    input[type="text"] {
-        width: 70%;
-    }   
-  }
-  
-  @media (max-width: 499px) {
-    .results {
-        grid-template-columns: 1fr;
-    }    
-  }
-
-  
+/* Styling for each book component */
+.results app-housing-location {
+  flex: 1 1 calc(25% - 20px); /* Each book takes up 25% of the container width minus the gap */
+  box-sizing: border-box; /* Include padding and border in the width calculation */
+}

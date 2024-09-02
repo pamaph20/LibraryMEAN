@@ -85,3 +85,44 @@
 .unread-book {
   border: 3px solid #e53e3e; /* Red outline for unread books */
 }
+.circle-x-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid #333;
+  background-color: transparent;
+  cursor: pointer;
+  padding: 0;
+  font-size: 20px;
+  line-height: 1;
+  color: #333;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.circle-x-button:hover {
+  background-color: #f0f0f0;
+  border-color: #555;
+}
+
+.x-mark {
+  pointer-events: none;
+}
+
+.read-button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  margin-left: 10px;
+  border-radius: 3px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.read-button:hover {
+  background-color: #218838;
+}
