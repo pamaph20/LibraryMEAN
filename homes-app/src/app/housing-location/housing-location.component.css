@@ -2,8 +2,11 @@
 .listing-link {
   text-decoration: none; /* Remove default underline */
   color: inherit; /* Use the text color of the listing */
+  display: block; /* Ensure the link behaves as a block-level element */
 }
 
+
+/* Overall listing container */
 /* Overall listing container */
 .listing {
   display: flex;
@@ -15,9 +18,10 @@
   margin-bottom: 20px;
   transition: transform 0.2s ease-in-out;
   cursor: pointer; /* Indicates the item is clickable */
-  max-width: 600px; /* Ensures consistency in width */
+  flex: 1 1 calc(25% - 20px); /* Each item takes up to 25% of the container width minus the gap */
+  box-sizing: border-box; /* Include padding and border in width/height calculation */
   height: 200px; /* Fixed height to maintain consistency */
-  overflow: hidden; /* Ensures contents are contained */
+  max-width: 100%; /* Ensure the width does not exceed the container */
 }
 
 .listing:hover {
@@ -78,6 +82,7 @@
   background-color: #c53030; /* Darker red for hover effect */
   transform: scale(1.02); /* Slightly increase size on hover for a subtle effect */
 }
+
 .read-book {
   border: 3px solid #48bb78; /* Green outline for read books */
 }
@@ -85,6 +90,7 @@
 .unread-book {
   border: 3px solid #e53e3e; /* Red outline for unread books */
 }
+
 .circle-x-button {
   display: inline-flex;
   align-items: center;

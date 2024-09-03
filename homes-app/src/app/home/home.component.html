@@ -4,10 +4,10 @@
     <button class="primary" type="button" (click)="filterResults(book.value)">Search</button>
   </form>
   <form class="addBook">
-    <input type="text" placeholder="Search Books" #olid />
+    <input type="text" placeholder="Add Books by Olid" #olid />
     <button class="primary" type="button" (click)="addBook(olid.value)">Add Book By OLID</button>
   </form>
   <section class="results">
-    <app-housing-location *ngFor="let book of FilteredBookList" [book]="book"></app-housing-location>
+    <app-housing-location *ngFor="let book of FilteredBookList" [book]="book" ></app-housing-location>
   </section>
 </section>

@@ -45,15 +45,12 @@ section {
   outline-offset: 2px; /* Offset outline for better visibility */
 }
 
-/* Styling for the results container */
-.results {
-  display: flex; /* Align items horizontally */
-  flex-wrap: wrap; /* Allow items to wrap to the next line if they overflow */
-  gap: 20px; /* Space between items */
-}
 
-/* Styling for each book component */
-.results app-housing-location {
-  flex: 1 1 calc(25% - 20px); /* Each book takes up 25% of the container width minus the gap */
-  box-sizing: border-box; /* Include padding and border in the width calculation */
+.results {
+  display: grid;
+  column-gap: 14px;
+  row-gap: 14px;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 400px));
+  margin-top: 50px;
+  justify-content: space-around;
 }

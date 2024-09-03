@@ -7,11 +7,14 @@ import { BooksService } from '../books.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { RouterModule } from '@angular/router';
+import { GenreDistComponent } from '../genre-dist/genre-dist.component';
+import { UserServiceService } from '../user-service.service';
+
 
 @Component({
   selector: 'app-user-library',
   standalone: true,
-  imports: [CommonModule, RouterModule, HousingLocationComponent],
+  imports: [CommonModule, RouterModule, HousingLocationComponent, GenreDistComponent],
   templateUrl: './user-library.component.html',
   styleUrls: ['./user-library.component.css']
 })
@@ -25,17 +28,22 @@ export class UserLibraryComponent {
   housingService: HousingService = inject(HousingService);
   ReadBooks: String[] = [];
   BookStyle: boolean = true;
+  userService: UserServiceService = inject(UserServiceService);
   constructor() {
+    
     const user_id = (this.route.snapshot.params["user_id"]);
     const library_name = (this.route.snapshot.params["library_id"]);
     this.housingService.getUserBooks(user_id, library_name).then((UsersBooks : Book[]) => {
       this.BookList = UsersBooks;
+      //Sams Stuiff
+      this.bookService.initBooks(this.BookList)
       console.log(this.BookList, "owned Books");
     }); 
     this.housingService.getUsersReadBooks(user_id).then((read: String[]) => {
       this.ReadBooks = read;
       console.log(this.ReadBooks, "Read Books")
     })
+    
     
   }
   

@@ -1,12 +1,17 @@
 import { inject, Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http'
-import { firstValueFrom } from 'rxjs';
+import { firstValueFrom , BehaviorSubject, of, switchMap} from 'rxjs';
+import { Book } from './Book';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BooksService {
   private http = inject(HttpClient);
+  //Sams Stuff
+  private _books = new BehaviorSubject<Book[]>([]);
+  public books$ = this._books.asObservable();
+
   async searchBook(olid: any) {
     const allData = await fetch(`http://localhost:3000/books/search/${olid}`)
     return await allData.json() ?? []
@@ -20,4 +25,10 @@ export class BooksService {
   async readBook(olid:string, user_id:string){
     return firstValueFrom(this.http.post(`http://localhost:3000/user/readBook/${olid}/${user_id}`, null))
   }
+  initBooks(books:Book[]){
+    console.log(books)
+    this._books.next(books)
+  }
+ 
+  
 }
