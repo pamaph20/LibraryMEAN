@@ -26,7 +26,7 @@ export class BooksService {
     return firstValueFrom(this.http.post(`http://localhost:3000/user/readBook/${olid}/${user_id}`, null))
   }
   initBooks(books:Book[]){
-    console.log(books)
+    console.log(books, "here")
     this._books.next(books)
   }
  

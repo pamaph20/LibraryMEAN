@@ -1,2 +1,3 @@
 <button class="button" (click)="readbooks()">Hi</button>
-<div *ngFor="let book of books">{{book.genre}}</div>
+<div *ngFor="let book of books">{{book.genre + " , " + book.Title}}</div>
+

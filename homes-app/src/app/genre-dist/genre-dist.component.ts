@@ -24,10 +24,11 @@ export class GenreDistComponent{
     this.books$.subscribe(res =>{
       this.books = res;
     });
+    
   }
    readbooks() {
-    console.log(this.books, "Books List")
-  }
+    console.log(this.books, "here")
+   }
  
 }
 
